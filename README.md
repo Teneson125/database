@@ -1,20 +1,21 @@
 # Shared MySQL Docker Setup
 
-This folder now contains two shared MySQL containers:
+This folder contains one shared MySQL container:
 - mysql-prod
-- mysql-uat
 
-## Start prod stack
+## Start stack
+Create a `.env` file with the root password:
 ```bash
-docker compose up -d mysql-prod
+MYSQL_ROOT_PASSWORD=your-root-password
 ```
 
-## Start uat stack
+The init script in `init/` creates all application databases in the same MySQL container.
+
 ```bash
-docker compose up -d mysql-uat
+docker compose up -d
 ```
 
-## Stop stacks
+## Stop stack
 ```bash
 docker compose down
 ```

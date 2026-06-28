@@ -21,4 +21,4 @@ volumes:
 
 networks:
   shared-db:
-    name: shared-db
+    external: true

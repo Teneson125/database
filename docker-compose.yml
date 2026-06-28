@@ -14,5 +14,11 @@ services:
       - ./init:/docker-entrypoint-initdb.d
     ports:
       - "3306:3306"
+    networks:
+      - shared-db
 volumes:
   mysql_prod_data:
+
+networks:
+  shared-db:
+    name: shared-db

@@ -18,7 +18,7 @@ services:
       - mysql_prod_data:/var/lib/mysql
       - ./init:/docker-entrypoint-initdb.d
     ports:
-      - "3309:3306"
+      - "3306:3306"
     networks:
       - zuufa
 

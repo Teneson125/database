@@ -39,9 +39,9 @@ services:
     networks:
       - zuufa
   
-  mysql-odl:
+  mysql-old:
     image: mysql:8.0
-    container_name: mysql-odl
+    container_name: mysql-old
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -59,4 +59,4 @@ services:
 volumes:
   mysql_prod_data:
   mysql_uat_data:
-  mysql_odl_data:
+  mysql_old_data:

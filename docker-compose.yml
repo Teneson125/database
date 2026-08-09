@@ -1,3 +1,7 @@
+networks:
+  zuufa:
+    external: true
+
 services:
   mysql-prod:
     image: mysql:8.0
@@ -15,10 +19,44 @@ services:
     ports:
       - "3306:3306"
     networks:
-      - shared-db
+      - zuufa
+
+  mysql-uat:
+    image: mysql:8.0
+    container_name: mysql-uat
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    command:
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - mysql_uat_data:/var/lib/mysql
+      - ./init:/docker-entrypoint-initdb.d
+    ports:
+      - "3307:3306"
+    networks:
+      - zuufa
+  
+  mysql-odl:
+    image: mysql:8.0
+    container_name: mysql-odl
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    command:
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - mysql_odl_data:/var/lib/mysql
+      - ./init:/docker-entrypoint-initdb.d
+    ports:
+      - "3308:3306"
+    networks:
+      - zuufa
 volumes:
   mysql_prod_data:
-
-networks:
-  shared-db:
-    external: true
+  mysql_uat_data:
+  mysql_odl_data:

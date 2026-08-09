@@ -1,8 +1,6 @@
 networks:
   zuufa:
     external: true
-  shared-db:
-    external: true
 
 services:
   redis:
@@ -16,7 +14,6 @@ services:
     command: redis-server --appendonly yes
     networks:
       - zuufa
-      - shared-db
 
 volumes:
   redis_data:

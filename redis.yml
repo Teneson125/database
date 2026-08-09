@@ -14,6 +14,17 @@ services:
     command: redis-server --appendonly yes
     networks:
       - zuufa
-
+  redis-uat:
+    image: redis:7-alpine
+    container_name: redis-uat
+    restart: unless-stopped
+    ports:
+      - "6479:6379"
+    volumes:
+      - redis_uat_data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - zuufa
 volumes:
   redis_data:
+  redis_uat_data:

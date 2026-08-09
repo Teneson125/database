@@ -6,6 +6,7 @@ services:
   mysql-prod:
     image: mysql:8.0
     container_name: mysql-prod
+    profiles: ["prod"]
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -24,6 +25,7 @@ services:
   mysql-uat:
     image: mysql:8.0
     container_name: mysql-uat
+    profiles: ["uat"]
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -42,6 +44,7 @@ services:
   mysql-old:
     image: mysql:8.0
     container_name: mysql-old
+    profiles: ["old"]
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}

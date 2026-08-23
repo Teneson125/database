@@ -1,6 +1,8 @@
 networks:
   zuufa:
     external: true
+  shared-db:
+    external: true
 
 services:
   redis:
@@ -15,6 +17,7 @@ services:
     command: redis-server --appendonly yes
     networks:
       - zuufa
+      - shared-db
   redis-uat:
     image: redis:7-alpine
     container_name: redis-uat
@@ -27,6 +30,7 @@ services:
     command: redis-server --appendonly yes
     networks:
       - zuufa
+      - shared-db
 volumes:
   redis_data:
   redis_uat_data:
